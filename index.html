@@ -28,6 +28,7 @@
       background: linear-gradient(120deg, #23263a 0%, #181B24 100%);
       color: var(--text);
       font-family: var(--sans);
+      overflow-x: hidden;
     }
     .container {
       max-width: 900px;
@@ -37,6 +38,8 @@
       box-shadow: 0 12px 32px rgba(20, 20, 40, 0.3);
       padding: 2.5rem;
       border: 1.5px solid var(--bg-dark);
+      position: relative;
+      z-index: 2;
     }
     header {
       text-align: center;
@@ -47,6 +50,8 @@
       color: var(--primary);
       font-size: 2.5rem;
       margin: 0;
+      letter-spacing: 2px;
+      transition: color 0.5s;
     }
     header p {
       color: var(--accent);
@@ -104,6 +109,14 @@
       color: #999;
       font-size: 1rem;
     }
+    /* Lens effect overlay */
+    #lens {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 10;
+      mix-blend-mode: lighten;
+    }
     @media (max-width: 700px) {
       .container {
         padding: 1rem;
@@ -117,10 +130,11 @@
     }
   </style>
 </head>
-<body>
-  <div class="container">
+<body data-barba="wrapper">
+  <div id="lens"></div>
+  <div class="container" data-barba="container" data-barba-namespace="home">
     <header>
-      <h1>🌌 It's Hacking Machine 🚀</h1>
+      <h1 id="main-title">🌌 It's Hacking Machine 🚀</h1>
       <p><em>Rust-based high-performance web threading tool for efficiency, scalability, and anonymity.</em></p>
     </header>
     <div class="disclaimer">
@@ -188,5 +202,66 @@
   <footer>
     &copy; 2025 It's Hacking Machine &mdash; Powered by Rust 🦀 | Designed for GitHub Pages
   </footer>
+  <!-- Barbajs, Anime.js, Lens.js, and more -->
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lens-js@2.2.3/dist/lens.min.js"></script>
+  <script>
+    // Animate header on page load
+    anime({
+      targets: "#main-title",
+      translateY: [-80, 0],
+      opacity: [0, 1],
+      color: [
+        { value: '#646cff', duration: 800 },
+        { value: '#14e956', duration: 800 }
+      ],
+      duration: 1800,
+      easing: 'easeOutExpo'
+    });
+
+    // Lens.js effect (subtle light follows mouse)
+    lens('#lens', {
+      radius: 120,
+      strength: 1.3,
+      blur: 0.32,
+      color: '#7ee7ff44',
+      fade: 200,
+      shadow: true
+    });
+
+    // Barbajs page transition (will work for multi-page sites)
+    barba.init({
+      transitions: [{
+        name: 'fade',
+        leave(data) {
+          return anime({
+            targets: data.current.container,
+            opacity: [1, 0],
+            duration: 500,
+            easing: 'easeInOutQuad'
+          }).finished;
+        },
+        enter(data) {
+          return anime({
+            targets: data.next.container,
+            opacity: [0, 1],
+            duration: 500,
+            easing: 'easeInOutQuad'
+          }).finished;
+        }
+      }]
+    });
+
+    // Extra: Animate features list in
+    anime({
+      targets: '.features-list li',
+      translateX: [-40, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(60, {start: 800}),
+      duration: 700,
+      easing: 'easeOutBack'
+    });
+  </script>
 </body>
 </html>
