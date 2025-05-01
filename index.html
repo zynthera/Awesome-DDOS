@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="It's Hacking Machine: A Rust-based high-performance web threading tool for efficiency, scalability, and anonymity.">
   <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono:400,700|Roboto:400,700&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://raw.githubusercontent.com/zythera/Hacking-Machine.github.io/main/favicon.ico">
   <style>
     :root {
       --bg-dark: #181B24;
@@ -19,17 +18,20 @@
       --mono: 'JetBrains Mono', monospace;
       --sans: 'Roboto', Arial, sans-serif;
     }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
+      min-height: 100vh;
       background: linear-gradient(120deg, #23263a 0%, #181B24 100%);
       color: var(--text);
       font-family: var(--sans);
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
     }
     .container {
       max-width: 900px;
-      margin: 30px auto;
+      margin: 32px auto;
       background: var(--card-bg);
       border-radius: 18px;
       box-shadow: 0 12px 32px rgba(20, 20, 40, 0.3);
