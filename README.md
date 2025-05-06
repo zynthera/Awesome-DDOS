@@ -59,7 +59,7 @@ A full demonstration will be available on YouTube soon.
 ## 📜 License
 
 This project is released under a **Red Team MIT License**.  
-See the [`LICENSE`](./LICENSE) file for full legal terms.
+See the [`LICENSE`](Licence.md) file for full legal terms.
 
 ---
 
