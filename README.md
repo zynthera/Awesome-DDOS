@@ -8,7 +8,7 @@
 
 ---
 
-![Banner](./assets/splash.png)
+![Banner](https://github.com/zynthera/zynthera/raw/master/public/hh.png)
 
 > **⚠️ Disclaimer:** This tool is intended strictly for lawful, ethical, and educational purposes. Unauthorized or malicious use is strictly prohibited.
 
